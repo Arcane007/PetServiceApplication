@@ -1,0 +1,31 @@
+logging:
+  file:
+    name: ${logging.file.path}/${spring.application.name}.log
+    path: logs
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}-%i.log
+      max-file-size: 10MB
+
+spring:
+  application:
+    name: pet-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USERNAME}
+    url: jdbc:mysql://localhost:3306/petistaan
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+    sql:
+      init:
+        mode: never
+server:
+  port: '9191'
+
